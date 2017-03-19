@@ -240,26 +240,25 @@ void sortByISBN () {
 	return position;
 	}
 	
-	int searchByAuthor(string author)
+	int searchByISBN(unsigned long long int isbn)
 	{
 	int first = 0, last = numBooks - 1, middle, position = -1;
 	bool found = false;
 	while (!found && first <= last)
 	{
 		middle = (first + last) / 2;
-		if (inventory[middle].author == author)
+		if (inventory[middle].ISBN == isbn)
 		{
 			found = true;
 			position = middle;
 		}
-		else if (inventory[middle].author > value)
+		else if (inventory[middle].ISBN > isbn)
 			last = middle - 1;
 		else first = middle + 1;
 	}
 	return position;
 	}
 	
-	void Lookupbook();
 	 void Addbook();
 	 void Deletebook();
 	 void EditBook();
