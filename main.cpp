@@ -20,6 +20,12 @@ Main To- Do:
 int main()
 {
 	cout << "Welcome to the Serendipity Bookstore online user interface!";
+	CashierModule cashier;
+	InventoryModule inventory;
+	ReportingModule reporter;
+	Module *cashptr = &cashier;
+	Module *invenptr = &inventory;
+	Module *repointer = &reporter;
 	int entry;
 	do
 	{
@@ -31,11 +37,11 @@ int main()
 		{
 			switch (entry)
 			{
-			case 1: //call Cashier's driver function
+			case 1: cashptr -> cashierDriver();
 				break;
-			case 2: //call Inventory
+			case 2: invenptr -> inventoryDriver();
 				break;
-			case 3: //call Reporting
+			case 3: repointer -> reportingDriver();
 				break;
 			default: cout << "Invalid menu choice. Please try again: ";
 			}
