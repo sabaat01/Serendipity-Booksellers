@@ -1,16 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+#include "InventoryModule.h"
+#include "CashierModule.h"
+#include "ReportingModule.h"
+#include "Module.h"
+#include "Book.h"
+#include "Date.h"
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
 #include <string>
 
 using namespace std;
-
-void accessCashier();
-void accessInventory();
-void accessReporting();
-
 
 /*
 Main To- Do:
@@ -20,12 +21,15 @@ Main To- Do:
 int main()
 {
 	cout << "Welcome to the Serendipity Bookstore online user interface!";
-	CashierModule cashier;
 	InventoryModule inventory;
-	ReportingModule reporter;
-	Module *cashptr = &cashier;
+	CashierModule cashier(&inventory);
+	ReportingModule reporter(&inventory);
+
 	Module *invenptr = &inventory;
+	Module *cashptr = &cashier;
 	Module *repointer = &reporter;
+
+
 	int entry;
 	do
 	{
@@ -37,11 +41,11 @@ int main()
 		{
 			switch (entry)
 			{
-			case 1: cashptr -> cashierDriver();
+			case 1: cashptr->driver();
 				break;
-			case 2: invenptr -> inventoryDriver();
+			case 2: invenptr->driver();
 				break;
-			case 3: repointer -> reportingDriver();
+			case 3: repointer->driver();
 				break;
 			default: cout << "Invalid menu choice. Please try again: ";
 			}
