@@ -1,158 +1,63 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include "ReportingModule.h"
 
-// reporting .cpp
+	ReportingModule::ReportingModule(InventoryModule *inv) : Module()
+	{
+		inventory = inv;
+	}
+	void ReportingModule::driver()
+	{
+		int choice;
+		do
+		{
+			choice = displayRepenu();
+			switch (choice)
+			{
+			case 1:{
+					   inventory->sortBytitle();
+					   inventory->displayBooks();
+			}
+				break;
+			case 2:{
+					   inventory->sortByquantity();
+					   inventory->displayBooks();
+			}
+				break;
+			case 3:{
+					   inventory->sortByRetailPrice();
+					   inventory->displayBooks();
+			}
+				break;
+			case 4:{
+					   cout << "This option is currently unavailable because sortByAge has not yet been completed.\n\n";
+					   //inventory->sortByAge();
+					   //inventory->displayBooks();
+			}
+				break;
+			case 5:
+				cout << "This option is currently unavailable because totalInventoryWholesale is incomplete.\n\n";
+				break;
+			case 6:
+				cout << "This option is currently unavailable because totalInventoryRetail is incomplete.\n\n";
+				break;
+			default:
+				cout << "Invalid choice. Please try again:";
+			}
 
-
-
-#include <iostream>
-using namespace std;
-
-void sortBytitle ()
-{
-    
-    cout << "Inventory list report is selected" << endl;
-    
-}
-
-void sortBywholesaleprice ()
-{
-    
-    cout << "Inventory wholesale value report is selected" << endl;
-    
-}
-
-void sortByretailprice ()
-
-{
-    
-    cout << "Inventory retail value report is selected" << endl;
-    
-}
-
-void sortByquantity ()
-
-{
-    
-    cout << "Inventory listing by quantity report is selected" << endl;
-    
-}
-
-void sortBydate ()
-{
-    
-    cout << "Inventory listing by age report is selected" << endl;
-    
-}
-
-// does this need?
-
-void sortBycost ()
-{
-    
-    cout << "Inventory listing by cost report is selected" << endl;
-    
-}
-
-/*
-void sortBycost (Book array[], int size) {
-    int startScan, minIndex;
-    double minValue;
-    for (startScan = 0; startScan < (size − 1); startScan++) {
-        minIndex = startScan;
-        minValue = book[startScan].getcost;
-        for(int index = startScan + 1; index < size; index++) {
-            if (book[index].getcost < minValue) {
-                minValue = array[index].getcost;
-                minIndex = index; }
-        }
-        Book[minIndex].getcost = array[startScan].getcost;
-        array[startScan].getcost = minValue;
-    } }
-*/
- 
-// need?
-void sortByauthor ()
-{
-    
-    cout << "Inventory author report is selected" << endl;
-    
-}
-
-//need?
-void sortByISBN ()
-{
-    
-    cout << "Inventory ISBN report is selected" << endl;
-    
-}
-
-
-
-void reports()
-
-{
-    
-    int ch;
-    
-    cout << endl;
-    
-    do
-        
-    {
-        
-        cout << "                                       " << endl;
-        
-        cout << " Serendipity Booksellers " << endl;
-        
-        cout << "                                       " << endl;
-        
-        cout << " Reports " << endl;
-        
-        cout << " " << endl;
-        
-        cout << " 1. Inventory Listing " << endl;
-        
-        cout << " 2. Inventory WholeSale value " << endl;
-        
-        cout << " 3. Inventory Retail Value" << endl;
-        
-        cout << " 4. Listing by Quantity " << endl;
-        
-        cout << " 5. Listing by Cost " << endl;
-        
-        cout << " 6. Listing by Age " << endl;
-        
-        cout << " 7. Return to the main menu " << endl;
-        
-        cout << " " << endl;
-        
-        cout << "Enter your choice" << endl;
-        
-        cin >> ch;
-        
-        switch(ch)
-        
-        {
-                
-            case 1: sortBytitle();break;
-                
-            case 2: sortBywholesaleprice();break;
-                
-            case 3: sortByretailprice();break;
-                
-            case 4: sortByquantity();break;
-                
-            case 5: sortBycost();break;
-                
-            case 6: sortBydate();break;
-                
-            case 7: break;
-                
-            default: cout<<"Please enter the right choice"<<endl;break;
-                
-        }
-        
-    }while(ch!=7);
-    
-}
-
-
+		} while (choice != 7);
+	}
+	int ReportingModule::displayRepenu()
+	{
+		int entry;
+		cout << "\n\n\n\nReporting Module Menu:\n";
+		cout << "1) Listing By Title\n";
+		cout << "2) Listing By Quantity\n";
+		cout << "3) Listing By Cost\n";
+		cout << "4) Listing By Age\n";
+		cout << "5) Total Inventory Wholesale Value\n";
+		cout << "6) Total Inventory Retail Value\n";
+		cout << "7) Return to Main Menu\n\n";
+		cout << "Enter your choice: ";
+		cin >> entry;
+		return entry;
+	}
