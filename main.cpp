@@ -37,6 +37,7 @@ int main()
 		cout << "\n\nPlease select a module:\n\n1)Cashier Module\n2)Inventory/Database Module\n3)Reporting Module\n4)Exit\nEnter"
 			<< " your choice: 1/2/3/4	";
 		cin >> entry; //entry can only hold integers. Inputting a non integer will crash the program. EXCEPTION HANDLING!!
+		cin.get();
 		if (entry != 4)
 		{
 			switch (entry)
