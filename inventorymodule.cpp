@@ -350,15 +350,128 @@ int InventoryModule::searchByISBN(string isbn)
 	*/
 void InventoryModule::addBook()
 	{
-		cout << "You have entered the Add Book function. However, there is nothing here yet. Redirecting...\n";
+
+		string Title;
+		string Author;
+		string Publisher;
+		double RetailPrice;
+		double wholeSalePrice;
+		cout << "Please enter the details of the Book you want to add\n";
+		cout << "Enter Title\n";
+		cin >> Title;
+		int result = binarySearchbyName(bookObject, size, Title);
+		if (result != -1)
+		{
+			bookObject[result].incrementQuantity();
+		}
+		else
+		{
+			size = size + 1;
+			bookObject[size].setTitle(Title);
+			
+			cout << "Enter Author";
+			cin >> Author;
+			cout << "\n";
+			bookObject[size].setAuthor(Author);
+			cout << "Enter Publisher";
+			cin >> Publisher;
+			cout << "\n";
+			bookObject[size].setPublisher(Publisher);
+			cout << "Retail price";
+			cin >> RetailPrice;
+			cout << "\n";
+			bookObject[size].setRetailPrice(RetailPrice);
+			cout << "whole sale price";
+			cin >> wholeSalePrice;
+			cout << "\n";
+			bookObject[size].setWholesale(wholeSalePrice);
+			bookObject[size].setQuantity(1);
+		}
+
 	}
+	
 void InventoryModule::deleteBook()
 	{
-		cout << "You have entered the Delete Book function. However, there is nothing here yet. Redirecting...\n";
+		
+		string BookTitle;
+		cout << "what book do you want Delete";
+		cin >> BookTitle;
+		int result = binarySearchbyName(bookObject, size, BookTitle);
+		if (result != -1)
+		{
+			for (int i = result; i < size - 1; i++)
+			{
+				bookObject[i] = bookObject[i + 1];   //Moves the entire list up by one.
+			}
+			size = size - 1;
+		}
+		else
+		{
+			cout << "Book not found\n";
+		}
 	}
+	
 void InventoryModule::editBook()
 	{
-		cout << "You have entered the Edit Book function. However, there is nothing here yet. Redirecting...\n";
+		string BookTitle;
+		cout << "what book do you want edit: Enter Title ";
+		cin >> BookTitle;
+		int result = binarySearchbyName(bookObject, size, BookTitle);
+		if (result != -1)
+		{
+			string res="";
+			int entry;
+			//int entry;
+			cout << "\nPlease select entry to be edited\t";
+			cout << "1:Title\n 2:Author\n 3:Publisher\n:4:Quantity \n 5:Retail price\n 6:whole sale\n ";
+			cin >> entry;
+			switch (entry)
+			{
+			case 1:
+				cout << "Enter Title";
+				cin >> res;
+				bookObject[result].setTitle(res);
+				break;
+			case 2:
+				cout << "Enter author ";
+				cin >> res;
+				bookObject[result].setAuthor(res);
+				break;
+			case 3:
+				cout << "Enter publisher";
+				cin >> res;
+				bookObject[result].setPublisher(res);
+				break;
+
+			case 4:
+				cout << "Quantity";
+				int value;
+				cin >> value;
+				bookObject[result].setQuantity(value);
+				break;
+
+			case 5:
+
+				cout << "Retail price";
+				double value2;
+				cin >> value2;
+				bookObject[result].setRetailPrice(value2);
+				break;
+			case 6:
+
+				cout << "whole sale";
+				double value3;
+				cin >> value3;
+				bookObject[result].setWholesale(value3);
+				break;
+			default: cout << "Invalid menu choice. Please try again: ";
+			}
+
+		}
+		else
+		{
+			cout << "Book not found\n";
+		}
 	}
 void InventoryModule::displayABook(int index)
 	{
