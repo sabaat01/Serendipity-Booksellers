@@ -487,16 +487,22 @@ void InventoryModule::displayABook(int index)
 
 	}
 void InventoryModule::displayBooks()
+	
 	{
 		cout << "\n\nEntering Display Book function....\n";
-		for (int i = 0; i < numBooks; i++)
+	      cout << "Title" << setw(20) << "author" << setw(20)<<"publisher"<<setw(20) << "ISBN" << setw(20)
+		      << "WholesaleCost" << setw(20) << "RetailCost" <<setw(20)<<"date"<<setw(20)<<"quantity" endl;
+		for (int i = 1; i <=size; i++)
 		{
-			cout << "\nTitle: " << inventory[i].getTitle()
-				<< "\nAuthor: " << inventory[i].getAuthor()
-				<< "\nISBN: " << inventory[i].getISBN()
-				<< "\nWholesale Cost: " << inventory[i].getWholesale()
-				<< "\nRetail Cost: " << inventory[i].getRetail()
-				<< "\nDate Added to Inventory: ";
+			cout << bookObject[i].getbookName() << setw(20) << bookObject[i].getbookAuhtor() << setw(20) << bookObject[i].getISBN() << setw(20) << bookObject[i].getWholesale() << endl;
+		//for (int i = 0; i < numBooks; i++)
+		//{
+			///cout << "\nTitle: " << inventory[i].getTitle()
+				//<< "\nAuthor: " << inventory[i].getAuthor()
+				//<< "\nISBN: " << inventory[i].getISBN()
+				//<< "\nWholesale Cost: " << inventory[i].getWholesale()
+				//<< "\nRetail Cost: " << inventory[i].getRetail()
+				//<< "\nDate Added to Inventory: ";
 			inventory[i].getDate();
 			cout << "\nQuantity: " << inventory[i].getQuantity();
 			cout << "\n\n\n\n";
