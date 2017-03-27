@@ -1,5 +1,6 @@
 #ifndef INVENTORYMODULE_H
 #define INVENTORYMODULE_H
+
 #include "Module.h"
 #include "Book.h"
 #include <fstream>
